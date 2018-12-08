@@ -14,9 +14,6 @@ class App extends Component {
   updateInput(key, value) {
     // update react state
     this.setState({ [key]: value });
-
-    // update localStorage
-    localStorage.setItem(key, value);
   }
 
   addItem() {
@@ -37,10 +34,6 @@ class App extends Component {
       list,
       newItem: ""
     });
-
-    // update localStorage
-    localStorage.setItem("list", JSON.stringify(list));
-    localStorage.setItem("newItem", "");
   }
 
   deleteItem(id) {
@@ -50,9 +43,6 @@ class App extends Component {
     const updatedList = list.filter(item => item.id !== id);
 
     this.setState({ list: updatedList });
-
-    // update localStorage
-    localStorage.setItem("list", JSON.stringify(updatedList));
   }
 
   hydrateStateWithLocalStorage() {
@@ -75,8 +65,33 @@ class App extends Component {
     }
   }
 
+  saveStateToLocalStorage() {
+    // for every item in React state
+    for (let key in this.state) {
+      // save to localStorage
+      localStorage.setItem(key, JSON.stringify(this.state[key]));
+    }
+  }
+
   componentDidMount() {
     this.hydrateStateWithLocalStorage();
+
+    // add event listener to save state to localStorage
+    // when user leaves/refreshes the page
+    window.addEventListener(
+      "beforeunload",
+      this.saveStateToLocalStorage.bind(this)
+    );
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener(
+      "beforeunload",
+      this.saveStateToLocalStorage.bind(this)
+    );
+
+    // saves if component has a chance to unmount
+    this.saveStateToLocalStorage();
   }
 
   render() {
