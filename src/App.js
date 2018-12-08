@@ -94,6 +94,10 @@ class App extends Component {
     this.saveStateToLocalStorage();
   }
 
+  shuffle() {
+    // TODO shuffle the list already saved in state
+  }
+
   render() {
     return (
       <div className="App">
@@ -137,6 +141,12 @@ class App extends Component {
             })}
           </ul>
         </div>
+        <button
+            onClick={() => this.shuffle()}
+            disabled={!this.state.list.length}
+          >
+          Shuffle
+        </button>
       </div>
     );
   }
