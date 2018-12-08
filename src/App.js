@@ -37,6 +37,10 @@ class App extends Component {
       list,
       newItem: ""
     });
+
+    // update localStorage
+    localStorage.setItem("list", JSON.stringify(list));
+    localStorage.setItem("newItem", "");
   }
 
   deleteItem(id) {
@@ -46,6 +50,9 @@ class App extends Component {
     const updatedList = list.filter(item => item.id !== id);
 
     this.setState({ list: updatedList });
+
+    // update localStorage
+    localStorage.setItem("list", JSON.stringify(updatedList));
   }
 
   render() {
