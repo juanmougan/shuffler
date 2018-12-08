@@ -1,3 +1,5 @@
+This application is based on [Ryan J. Yost's excellent tutorial](https://hackernoon.com/how-to-take-advantage-of-local-storage-in-your-react-projects-a895f2b2d3f2). The idea is to shuffle a list of names, in order to create a draw.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
