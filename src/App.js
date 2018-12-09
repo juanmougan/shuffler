@@ -95,7 +95,22 @@ class App extends Component {
   }
 
   shuffle() {
-    // TODO shuffle the list already saved in state
+    // copy current list of items
+    const list = [...this.state.list];
+    // shuffle the list
+    const shuffledList = this.shuffleArray(list);
+    // Replace with shuffled list
+    this.setState({ list: shuffledList });
+  }
+
+  // TODO needs unit testing
+  // Assert same size, assert each element on expected is on actual result
+  shuffleArray(a) {
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
   }
 
   render() {
@@ -103,7 +118,7 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React LocalStorage Tutorial</h1>
+          <h1 className="App-title">Welcome to Shuffler&#174;!</h1>
         </header>
         <div
           style={{
@@ -132,7 +147,7 @@ class App extends Component {
             {this.state.list.map(item => {
               return (
                 <li key={item.id}>
-                  {item.value}
+                  {item.value}&nbsp;
                   <button onClick={() => this.deleteItem(item.id)}>
                     Remove
                   </button>
