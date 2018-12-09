@@ -155,13 +155,13 @@ class App extends Component {
               );
             })}
           </ul>
+          <button
+              onClick={() => this.shuffle()}
+              disabled={!this.state.list.length}
+            >
+            Shuffle
+          </button>
         </div>
-        <button
-            onClick={() => this.shuffle()}
-            disabled={!this.state.list.length}
-          >
-          Shuffle
-        </button>
       </div>
     );
   }
