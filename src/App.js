@@ -133,10 +133,12 @@ class App extends Component {
           <input
             type="text"
             placeholder="Type item here"
+            id="addItemText"
             value={this.state.newItem}
             onChange={e => this.updateInput("newItem", e.target.value)}
           />
           <button
+            id="addItemButton"
             onClick={() => this.addItem()}
             disabled={!this.state.newItem.length}
           >
@@ -156,6 +158,7 @@ class App extends Component {
             })}
           </ul>
           <button
+              id="shuffleButton"
               onClick={() => this.shuffle()}
               disabled={!this.state.list.length}
             >
