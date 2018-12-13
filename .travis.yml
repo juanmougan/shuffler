@@ -15,7 +15,7 @@ python:
   - "2.7"
 #export PYTHON_HOME="$(python -c 'import sys; print sys.executable')"
 before_script:
-  export PATH=$PATH:~/bin
+  - export PATH=$PATH:~/bin
   - wget http://chromedriver.storage.googleapis.com/2.24/chromedriver_linux64.zip
   - unzip chromedriver_linux64.zip -d ~/bin
   - export CHROME_BIN=chromium-browser
