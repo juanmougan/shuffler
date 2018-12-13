@@ -9,12 +9,13 @@ script:
   - npm run build
 sudo: false
 before_install:
-# debug
-echo Will show path
-echo $PATH 
 # install dependencies
 install: "pip install -r requirements.txt"  
 language: python
 python:
   - "2.7"
+export PYTHON_HOME="$(python -c 'import sys; print sys.executable')"
+- wget http://chromedriver.storage.googleapis.com/2.24/chromedriver_linux64.zip
+- unzip chromedriver_linux64.zip -d $PYTHON_HOME"/bin/"
+- export CHROME_BIN=chromium-browser
 script: robot tests.robot
