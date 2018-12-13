@@ -14,8 +14,9 @@ install: "pip install -r requirements.txt"
 language: python
 python:
   - "2.7"
-export PYTHON_HOME="$(python -c 'import sys; print sys.executable')"
+#export PYTHON_HOME="$(python -c 'import sys; print sys.executable')"
+export PATH=$PATH:~/bin
 - wget http://chromedriver.storage.googleapis.com/2.24/chromedriver_linux64.zip
-- unzip chromedriver_linux64.zip -d $PYTHON_HOME"/bin/"
+- unzip chromedriver_linux64.zip -d ~/bin
 - export CHROME_BIN=chromium-browser
 script: robot tests.robot
